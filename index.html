@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunFlow Solutions | Expert Automatisation La Réunion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --primary: #006eb6;       /* Bleu du Logo */
+            --dark-blue: #1e293b;     /* Bleu Sombre (Texte/Fond) */
+            --accent: #0ea5e9;        /* Cyan (Touche moderne) */
+            --light: #eceeef;         /* Fond clair */
+            --white: #ffffff;
+            --gray: #64748b;
+            --success: #10b981;       /* Vert pour les résultats */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
+        body { color: var(--dark-blue); background-color: var(--light); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 5%; 
+            transition: 0.3s;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-container { display: flex; align-items: center; cursor: pointer; }
+        .logo-bg { background: white; padding: 5px; border-radius: 8px; display: inline-block; }
+        .logo-img { height: 80px; width: auto; object-fit: contain; }
+
+        .nav-links { display: flex; gap: 20px; font-weight: 500; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--primary); }
+        .btn-nav {
+            background: var(--primary); color: white; padding: 10px 20px;
+            border-radius: 5px; font-weight: 600;
+        }
+        .btn-nav:hover { background: var(--dark-blue); transform: translateY(-2px); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: 180px 5% 100px;
+            background: linear-gradient(170deg, var(--dark-blue) 0%, #0f172a 100%);
+            color: white;
+            text-align: center;
+        }
+        .hero-content { max-width: 800px; margin: 0 auto; }
+        .badge-hero {
+            background: rgba(255,255,255,0.1); padding: 5px 15px; border-radius: 20px;
+            font-size: 0.85rem; color: var(--accent); font-weight: 600; display: inline-block; margin-bottom: 20px;
+        }
+        .hero h1 { font-size: 3rem; margin-bottom: 20px; line-height: 1.2; }
+        .hero p { font-size: 1.2rem; color: #cbd5e1; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        
+        .hero-btns { display: flex; gap: 15px; justify-content: center; }
+        .btn-primary { background: var(--primary); color: white; padding: 15px 30px; border-radius: 6px; font-weight: bold; }
+        .btn-outline { border: 2px solid rgba(255,255,255,0.2); color: white; padding: 15px 30px; border-radius: 6px; font-weight: bold; }
+        .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
+        .btn-outline:hover { background: white; color: var(--dark-blue); }
+
+        /* --- GLOBAL SECTION STYLES --- */
+        section { padding: 80px 5%; }
+        .section-title { text-align: center; margin-bottom: 60px; }
+        .section-title h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .section-title span { color: var(--primary); }
+        .section-title p { color: var(--gray); max-width: 600px; margin: 0 auto; }
+
+        /* --- VALEURS --- */
+        .values { padding: 60px 5%; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .value-card { text-align: center; padding: 20px; }
+        .icon-box {
+            font-size: 2rem; color: var(--primary); margin-bottom: 20px;
+            background: #dbeafe; width: 70px; height: 70px; line-height: 70px; border-radius: 50%; margin: 0 auto 20px;
+        }
+        .value-card h3 { margin-bottom: 10px; font-size: 1.25rem; }
+
+        /* --- SERVICES (Expertises) --- */
+        .services { background: white; }
+        .service-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px; max-width: 1200px; margin: 0 auto;
+        }
+
+        .card {
+            background: var(--light); border: 1px solid #e2e8f0; border-radius: 12px;
+            padding: 30px; transition: 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
+        
+        .card-header { margin-bottom: 20px; }
+        .card-icon { font-size: 1.5rem; color: var(--primary); margin-bottom: 15px; display: inline-block; background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .card h3 { font-size: 1.4rem; margin-bottom: 5px; }
+        .card-sub { font-size: 0.9rem; font-weight: 700; color: var(--accent); text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .card-desc { font-style: italic; color: var(--dark-blue); margin-bottom: 15px; font-weight: 500; }
+        
+        .features { margin-bottom: 20px; flex-grow: 1; }
+        .features li { margin-bottom: 8px; color: var(--gray); font-size: 0.95rem; display: flex; align-items: start; gap: 10px; }
+        .features li i { color: var(--success); margin-top: 5px; font-size: 0.8rem; }
+        
+        .price-tag { background: var(--dark-blue); color: white; padding: 10px; border-radius: 6px; text-align: center; font-weight: bold; margin-top: auto; }
+        .price-tag span { font-weight: 400; font-size: 0.85rem; opacity: 0.8; display: block; }
+
+        /* --- PACKS SECTION --- */
+        .packs-section { background: var(--light); }
+        .packs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        
+        .pack-card { background: white; border-radius: 15px; padding: 40px; text-align: center; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .pack-card:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .pack-card.featured { border: 2px solid var(--primary); position: relative; }
+        .pack-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 5px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+        
+        .pack-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+        .pack-price { font-size: 2rem; color: var(--primary); font-weight: bold; margin-bottom: 20px; display: block; }
+        .pack-price small { font-size: 1rem; color: var(--gray); font-weight: normal; }
+        
+        .pack-list { text-align: left; margin: 20px 0; border-top: 1px solid #f1f5f9; padding-top: 20px; }
+        .pack-list li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .btn-pack { display: block; background: var(--dark-blue); color: white; padding: 12px; border-radius: 6px; font-weight: bold; margin-top: 20px; }
+        .btn-pack:hover { background: var(--accent); }
+        .featured .btn-pack { background: var(--primary); }
+
+        /* --- RÉALISATIONS (Portfolio) --- */
+        .portfolio { background: white; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        
+        .project-card { background: var(--light); border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #e2e8f0; }
+        .project-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .project-img { height: 200px; background: #cbd5e1; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: bold; }
+        .project-content { padding: 25px; }
+        .project-tag { font-size: 0.8rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .project-result { background: #f0fdf4; border-left: 4px solid var(--success); padding: 10px 15px; color: #166534; font-weight: 600; font-size: 0.9rem; margin-top: 15px; }
+
+        /* --- A PROPOS (AVEC BADGE DE CERTIFICATION) --- */
+        .about { background: var(--light); }
+        .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 60px; max-width: 1200px; margin: 0 auto; align-items: center; }
+        .about-text h3 { font-size: 2rem; margin-bottom: 25px; color: var(--dark-blue); font-weight: 800; }
+        
+        .about-vision-box {
+            background: white;
+            border-left: 5px solid var(--primary);
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 0 10px 10px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+        .about-vision-box p { color: var(--dark-blue) !important; font-weight: 600; font-size: 1.05rem; margin: 0; }
+        
+        .values-list { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .value-item { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--dark-blue); }
+        .value-item i { color: var(--primary); background: #e0f2fe; padding: 10px; border-radius: 50%; }
+        
+        .tags { display: flex; gap: 10px; margin-top: 30px; flex-wrap: wrap; }
+        .tag { background: white; padding: 8px 16px; border-radius: 20px; font-weight: 600; font-size: 0.9rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .tag.tech { color: var(--primary); border: 1px solid #bfdbfe; }
+        .tag.secu { color: #dc2626; border: 1px solid #fecaca; }
+
+        .about-image {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        /* --- STYLE DU BADGE DE CERTIFICATION (SANS IMAGE) --- */
+        .certification-card {
+            margin-top: 30px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: left;
+            transition: 0.3s;
+        }
+        .certification-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-color: var(--primary); }
+        
+        .cert-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        .cert-details { display: flex; flex-direction: column; }
+        .cert-title { font-size: 0.75rem; text-transform: uppercase; color: var(--gray); font-weight: 700; letter-spacing: 0.5px; }
+        .cert-name { font-size: 0.95rem; font-weight: 800; color: var(--dark-blue); line-height: 1.2; margin: 2px 0 5px 0; }
+        .cert-status { font-size: 0.8rem; color: var(--success); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+
+        /* --- BLOG --- */
+        .blog { background: white; }
+        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
+        .blog-card { background: var(--light); padding: 25px; border-radius: 10px; border: 1px solid #e2e8f0; transition: 0.3s; }
+        .blog-card:hover { border-color: var(--primary); }
+        .blog-date { font-size: 0.85rem; color: var(--gray); margin-bottom: 10px; display: block; }
+        .read-more { color: var(--primary); font-weight: bold; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; margin-top: 15px; }
+
+        /* --- CONTACT --- */
+        .contact { background: var(--light); }
+        .contact-container { display: grid; grid-template-columns: 1fr 1.5fr; gap: 50px; max-width: 1200px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 0 50px rgba(0,0,0,0.05); }
+        
+        .contact-info { background: var(--dark-blue); color: white; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; }
+        .contact-item i { color: var(--accent); }
+        
+        .calendly-btn { background: var(--accent); color: white; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; margin-top: 30px; display: block; transition: 0.3s; }
+        .calendly-btn:hover { background: white; color: var(--dark-blue); }
+
+        .contact-form { padding: 50px; background: #f8fafc; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark-blue); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
+        .btn-submit { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1rem; }
+        .btn-submit:hover { background: var(--dark-blue); }
+
+        /* --- FOOTER --- */
+        footer { background: var(--dark-blue); color: white; padding: 60px 5% 20px; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto 40px; }
+        .footer-col h4 { margin-bottom: 20px; font-size: 1.1rem; color: white; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a { color: #cbd5e1; }
+        .footer-col ul li a:hover { color: var(--accent); }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; text-align: center; color: #64748b; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .contact-container { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; }
+            .logo-img { height: 60px; } 
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo-container">
+                <div class="logo-bg">
+                    <img src="logo.jpg" alt="Logo RunFlow Solutions" class="logo-img">
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#prestations">Services</a></li>
+                    <li><a href="#packs">Packs</a></li>
+                    <li><a href="#realisations">Réalisations</a></li>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact" class="btn-nav">Demander un devis</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge-hero">L'automatisation au service de La Réunion</span>
+            <h1>Gagnez du temps,<br>automatisez le reste.</h1>
+            <p>Expert Microsoft Power Platform & Sécurité. <br>J'aide les entreprises réunionnaises à supprimer les tâches répétitives pour se concentrer sur la croissance.</p>
+            <div class="hero-btns">
+                <a href="#prestations" class="btn-primary">Découvrir mes offres</a>
+                <a href="#contact" class="btn-outline">Audit Gratuit</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="values">
+        <div class="value-card">
+            <div class="icon-box"><i class="fas fa-stopwatch"></i></div>
+            <h3>Gain de Temps</h3>
+            <p>Libérez votre temps, automatisez vos tâches répétitives.</p>
+        </div>
+        <div class="value-card">
+            <div class="icon-box"><i class="fas fa-shield-alt"></i></div>
+            <h3>Sécurité & Fiabilité</h3>
+            <p>Rigueur d'ingénieur système : vos données sont centralisées et sécurisées.</p>
+        </div>
+        <div class="value-card">
+            <div class="icon-box"><i class="fas fa-rocket"></i></div>
+            <h3>Productivité</h3>
+            <p>Des outils sur mesure accessibles partout (Mobile & Web).</p>
+        </div>
+    </section>
+
+    <section id="prestations" class="services">
+        <div class="section-title">
+            <h2>Nos Expertises <span>À la Carte</span></h2>
+            <p>Des solutions ciblées pour répondre à chaque besoin de votre entreprise.</p>
+        </div>
+
+        <div class="service-grid">
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon"><i class="fas fa-robot"></i></span>
+                    <span class="card-sub">Power Automate</span>
+                    <h3>Automatisation des processus</h3>
+                </div>
+                <p class="card-desc">"Nous créons des workflows intelligents qui synchronisent vos outils."</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Automatisation emails et notifications</li>
+                    <li><i class="fas fa-check"></i> Sync Excel / SharePoint / Teams</li>
+                    <li><i class="fas fa-check"></i> Traitement automatique de données</li>
+                </ul>
+                <div class="price-tag">500 € – 2 500 € <span>selon complexité</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon"><i class="fas fa-mobile-alt"></i></span>
+                    <span class="card-sub">Power Apps</span>
+                    <h3>Applications Sur Mesure</h3>
+                </div>
+                <p class="card-desc">"Des outils personnalisés, accessibles sur mobile et web."</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> App de suivi d’activité / Reporting</li>
+                    <li><i class="fas fa-check"></i> Gestion d'inventaire ou commandes</li>
+                    <li><i class="fas fa-check"></i> Interfaces centralisées</li>
+                </ul>
+                <div class="price-tag">1 500 € – 6 000 € <span>par application</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon"><i class="fas fa-chart-line"></i></span>
+                    <span class="card-sub">Consulting</span>
+                    <h3>Optimisation & Digitalisation</h3>
+                </div>
+                <p class="card-desc">"Nous identifions vos points faibles pour booster vos performances."</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Audit complet des workflows</li>
+                    <li><i class="fas fa-check"></i> Mise en place de KPI</li>
+                    <li><i class="fas fa-check"></i> Gestion du changement</li>
+                </ul>
+                <div class="price-tag">1 000 € – 4 000 € <span>par projet</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon"><i class="fab fa-microsoft"></i></span>
+                    <span class="card-sub">Intégration M365</span>
+                    <h3>Unification des Outils</h3>
+                </div>
+                <p class="card-desc">"Tous vos outils connectés dans un flux unique."</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Intégration Teams / SharePoint / Forms</li>
+                    <li><i class="fas fa-check"></i> Centralisation communication</li>
+                    <li><i class="fas fa-check"></i> Connecteurs personnalisés</li>
+                </ul>
+                <div class="price-tag">800 € – 3 000 € <span>selon périmètre</span></div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon"><i class="fas fa-chalkboard-teacher"></i></span>
+                    <span class="card-sub">Formation</span>
+                    <h3>Accompagnement</h3>
+                </div>
+                <p class="card-desc">"Maîtrisez vos outils, devenez autonome."</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Formation Power Automate / Apps</li>
+                    <li><i class="fas fa-check"></i> Guides et documentation</li>
+                    <li><i class="fas fa-check"></i> Ateliers pratiques</li>
+                </ul>
+                <div class="price-tag">400 € – 1 200 € <span>par session</span></div>
+            </div>
+
+            <div class="card" style="border-color: var(--primary); background: #f0f9ff;">
+                <div class="card-header">
+                    <span class="card-icon"><i class="fas fa-life-ring"></i></span>
+                    <span class="card-sub">Tranquillité</span>
+                    <h3>Maintenance & Support</h3>
+                </div>
+                <p class="card-desc">"Votre tranquillité, notre priorité. Supervision continue."</p>
+                <ul class="features">
+                    <li><i class="fas fa-check"></i> Correction de bugs rapide</li>
+                    <li><i class="fas fa-check"></i> Mises à jour des flux</li>
+                    <li><i class="fas fa-check"></i> Assistance utilisateur (Teams/Tel)</li>
+                </ul>
+                <div class="price-tag" style="background: var(--primary);">150 € – 800 € <span>/ mois (Abonnement)</span></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="packs" class="packs-section">
+        <div class="section-title">
+            <h2>Packs <span>Tout-Compris</span></h2>
+            <p>Des solutions clés en main adaptées à votre stade de développement.</p>
+        </div>
+
+        <div class="packs-grid">
+            <div class="pack-card">
+                <div class="pack-title">Pack Découverte</div>
+                <span class="pack-price">1 000 € - 1 500 €</span>
+                <p style="color:var(--gray);">Pour tester l'automatisation.</p>
+                <ul class="pack-list">
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Audit simple</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> 1 à 2 Workflows auto</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Formation courte</li>
+                </ul>
+                <a href="#contact" class="btn-pack">Choisir ce pack</a>
+            </div>
+
+            <div class="pack-card featured">
+                <div class="pack-badge">LE PLUS POPULAIRE</div>
+                <div class="pack-title">Pack Optimisation</div>
+                <span class="pack-price">2 500 € - 5 000 €</span>
+                <p style="color:var(--gray);">Pour structurer l'entreprise.</p>
+                <ul class="pack-list">
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Plusieurs workflows complexes</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Tableau de bord (KPI)</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Formation complète</li>
+                </ul>
+                <a href="#contact" class="btn-pack">Choisir ce pack</a>
+            </div>
+
+            <div class="pack-card">
+                <div class="pack-title">Pack Sur-Mesure</div>
+                <span class="pack-price">5 000 € - 10 000 €</span>
+                <p style="color:var(--gray);">Transformation digitale complète.</p>
+                <ul class="pack-list">
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Automatisation globale</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> App Power Apps sur mesure</li>
+                    <li><i class="fas fa-check-circle" style="color:var(--success);"></i> Intégration système</li>
+                </ul>
+                <a href="#contact" class="btn-pack">Me contacter</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="realisations" class="portfolio">
+        <div class="section-title">
+            <h2>Mes <span>Réalisations</span></h2>
+            <p>Concrètement, qu'est-ce que l'automatisation change pour vous ?</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-file-invoice-dollar" style="font-size:3rem;"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">Administratif</span>
+                    <h3>Traitement Automatique des Factures</h3>
+                    <p>Un robot qui détecte les factures dans les emails, les renomme et les classe automatiquement dans SharePoint.</p>
+                    <div class="project-result">
+                        <i class="fas fa-chart-line"></i> -60% de temps de traitement
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-file-signature" style="font-size:3rem;"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">RH / Juridique</span>
+                    <h3>Générateur de Contrats</h3>
+                    <p>Création d'un formulaire simple qui génère automatiquement un contrat PDF personnalisé et l'envoie pour signature.</p>
+                    <div class="project-result">
+                        <i class="fas fa-check-circle"></i> 0 erreur de saisie
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img">
+                    <i class="fas fa-server" style="font-size:3rem;"></i>
+                </div>
+                <div class="project-content">
+                    <span class="project-tag">IT / Réseau</span>
+                    <h3>Alerte Panne Serveur</h3>
+                    <p>Surveillance automatique des serveurs critiques. En cas de panne, une alerte SMS est envoyée au technicien d'astreinte.</p>
+                    <div class="project-result">
+                        <i class="fas fa-bolt"></i> Réactivité < 1 minute
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <span style="color:var(--accent); font-weight:bold; text-transform:uppercase; font-size:0.9rem;">Mon Histoire</span>
+                <h3>RunFlow Solutions est née d'une idée simple.</h3>
+                <p>
+                    Aider les entreprises à travailler mieux, plus vite, avec moins de contraintes. Après avoir constaté que de nombreuses organisations perdaient un temps précieux dans des tâches répétitives, nous avons décidé d’apporter une solution moderne : l’automatisation.
+                </p>
+                <p>
+                    Aujourd’hui, nous mettons la technologie au service de votre productivité. Nous créons des workflows qui s’occupent du travail répétitif à votre place, des applications sur mesure qui s’adaptent à votre métier, et des outils qui améliorent le travail collaboratif.
+                </p>
+                
+                <div class="about-vision-box">
+                    <p>Notre vision : chaque entreprise réunionnaise puisse accéder à des solutions innovantes, simples et efficaces.</p>
+                </div>
+                
+                <div class="values-list">
+                    <div class="value-item"><i class="fas fa-check"></i> Proximité (974)</div>
+                    <div class="value-item"><i class="fas fa-check"></i> Sécurité des données</div>
+                    <div class="value-item"><i class="fas fa-check"></i> Pédagogie</div>
+                    <div class="value-item"><i class="fas fa-check"></i> Résultat (ROI)</div>
+                </div>
+    
+            </div>
+            
+            <div class="about-image">
+                <i class="fas fa-user-tie" style="font-size: 5rem; color: #cbd5e1; margin-bottom: 20px;"></i>
+                <p><strong>[Ma Photo Ici]</strong></p>
+                
+                <div class="certification-card">
+                    <div class="cert-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="cert-details">
+                        <span class="cert-title">Microsoft Certified</span>
+                        <span class="cert-name">Power Platform Fundamentals</span>
+                        <div class="cert-status"><i class="fas fa-check-circle"></i> Certification Validée</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="blog" class="blog">
+        <div class="section-title">
+            <h2>Le Blog <span>Automatisation</span></h2>
+            <p>Conseils et astuces pour digitaliser votre entreprise à La Réunion.</p>
+        </div>
+
+        <div class="blog-grid">
+            <article class="blog-card">
+                <span class="blog-date">28 Nov 2024</span>
+                <h3>Pourquoi automatiser vos processus PME ?</h3>
+                <p>Découvrez comment les petites entreprises gagnent des heures chaque semaine grâce au Low-Code.</p>
+                <a href="#" class="read-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="blog-card">
+                <span class="blog-date">15 Nov 2024</span>
+                <h3>5 tâches simples à automatiser aujourd'hui</h3>
+                <p>Pas besoin d'être un expert. Voici 5 idées pour commencer avec Power Automate.</p>
+                <a href="#" class="read-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+            </article>
+
+            <article class="blog-card">
+                <span class="blog-date">02 Nov 2024</span>
+                <h3>Power Automate vs Zapier : Lequel choisir ?</h3>
+                <p>Comparatif complet pour les entreprises utilisant déjà Microsoft 365.</p>
+                <a href="#" class="read-more">Lire l'article <i class="fas fa-arrow-right"></i></a>
+            </article>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Parlons de votre <span>Projet</span></h2>
+            <p>Audit gratuit de 20 minutes. Sans engagement.</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>RunFlow Solutions</h3>
+                <p style="margin-bottom: 30px; opacity: 0.9;">
+                    Basé à Saint-Denis, je me déplace dans toute l'île ou interviens à distance.
+                </p>
+                
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i> Saint-Denis, La Réunion (974)
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i> contact@runflow-solutions.re
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i> 0692 XX XX XX
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-clock"></i> Lun - Ven : 08h - 18h
+                </div>
+
+                <a href="#" class="calendly-btn">
+                    <i class="fas fa-calendar-alt"></i> Réserver un créneau
+                </a>
+            </div>
+
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label>Votre Nom</label>
+                        <input type="text" placeholder="Ex: Mathieu MARTIGNY">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" placeholder="Ex: mathieu@entreprise.re">
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="5" placeholder="Bonjour, j'aimerais automatiser la gestion de mes factures..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Envoyer la demande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Liens Rapides</h4>
+                <ul>
+                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#prestations">Expertises</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <ul>
+                    <li><a href="#">Mentions Légales</a></li>
+                    <li><a href="#">Politique de Confidentialité</a></li>
+                    <li><a href="#">CGV</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Suivez-nous</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 RunFlow Solutions. Tous droits réservés.
+        </div>
+    </footer>
+
+</body>
+</html>
