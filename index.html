@@ -3,19 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RunFlow Solutions</title>
+    <title>RunFlow Solutions | Expert Automatisation La Réunion</title>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     
     <style>
         /* --- VARIABLES & RESET --- */
         :root {
             --primary: #006eb6;       /* Bleu du Logo */
-            --dark-blue: #1e293b;     /* Bleu Sombre (Texte/Fond) */
-            --accent: #0ea5e9;        /* Cyan (Touche moderne) */
-            --light: #eceeef;         /* Fond clair */
+            --dark-blue: #1e293b;     /* Bleu Sombre */
+            --accent: #0ea5e9;        /* Cyan */
+            --light: #f8fafc;         /* Fond clair */
             --white: #ffffff;
             --gray: #64748b;
-            --success: #10b981;       /* Vert pour les résultats */
+            --success: #10b981;       /* Vert */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; scroll-behavior: smooth; }
@@ -77,8 +80,12 @@
         .btn-primary:hover { background: var(--accent); transform: translateY(-3px); }
         .btn-outline:hover { background: white; color: var(--dark-blue); }
 
-        /* --- GLOBAL SECTION STYLES --- */
-        section { padding: 80px 5%; }
+        /* --- GLOBAL SECTION STYLES (SCROLL FIX) --- */
+        section { 
+            padding: 80px 5%; 
+            scroll-margin-top: 100px; /* Empêche le menu de cacher le titre */
+        }
+        
         .section-title { text-align: center; margin-bottom: 60px; }
         .section-title h2 { font-size: 2.5rem; margin-bottom: 15px; }
         .section-title span { color: var(--primary); }
@@ -149,7 +156,7 @@
         .project-tag { font-size: 0.8rem; color: var(--accent); font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: block; }
         .project-result { background: #f0fdf4; border-left: 4px solid var(--success); padding: 10px 15px; color: #166534; font-weight: 600; font-size: 0.9rem; margin-top: 15px; }
 
-        /* --- A PROPOS (AVEC BADGE DE CERTIFICATION) --- */
+        /* --- A PROPOS --- */
         .about { background: var(--light); }
         .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 60px; max-width: 1200px; margin: 0 auto; align-items: center; }
         .about-text h3 { font-size: 2rem; margin-bottom: 25px; color: var(--dark-blue); font-weight: 800; }
@@ -181,38 +188,25 @@
             text-align: center;
         }
 
-        /* --- STYLE DU BADGE DE CERTIFICATION (SANS IMAGE) --- */
-        .certification-card {
+        /* --- BLOC CERTIFICATION (Badge) --- */
+        .certif-container {
             margin-top: 30px;
-            background: #fff;
+            background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 12px;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            text-align: left;
-            transition: 0.3s;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .certification-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); border-color: var(--primary); }
+        .certif-container:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         
-        .cert-icon {
-            background: var(--primary);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-        .cert-details { display: flex; flex-direction: column; }
-        .cert-title { font-size: 0.75rem; text-transform: uppercase; color: var(--gray); font-weight: 700; letter-spacing: 0.5px; }
-        .cert-name { font-size: 0.95rem; font-weight: 800; color: var(--dark-blue); line-height: 1.2; margin: 2px 0 5px 0; }
-        .cert-status { font-size: 0.8rem; color: var(--success); font-weight: 600; display: flex; align-items: center; gap: 5px; }
+        .certif-img { width: 140px; height: auto; margin: 0 auto 15px; display: block; filter: drop-shadow(0 4px 6px rgba(0, 110, 182, 0.2)); }
+        
+        .certif-title { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
+        .certif-name { font-weight: 800; color: var(--dark-blue); font-size: 1.2rem; line-height: 1.3; margin-bottom: 10px; }
+        .certif-check { margin-top: 10px; display: inline-flex; align-items: center; gap: 8px; background: #dcfce7; color: #166534; padding: 8px 16px; border-radius: 30px; font-size: 0.9rem; font-weight: 700; box-shadow: 0 2px 5px rgba(22, 101, 52, 0.15); }
+        .certif-check i { font-size: 1.1rem; }
 
         /* --- BLOG --- */
         .blog { background: white; }
@@ -230,15 +224,50 @@
         .contact-item { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; font-size: 1.1rem; }
         .contact-item i { color: var(--accent); }
         
-        .calendly-btn { background: var(--accent); color: white; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; margin-top: 30px; display: block; transition: 0.3s; }
+        .calendly-btn { background: var(--accent); color: white; padding: 15px; text-align: center; border-radius: 8px; font-weight: bold; margin-top: 30px; display: block; transition: 0.3s; text-decoration: none; cursor: pointer; }
         .calendly-btn:hover { background: white; color: var(--dark-blue); }
 
         .contact-form { padding: 50px; background: #f8fafc; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--dark-blue); }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 1rem; }
-        .btn-submit { background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 6px; font-weight: bold; cursor: pointer; width: 100%; font-size: 1rem; }
-        .btn-submit:hover { background: var(--dark-blue); }
+        
+        /* INPUTS AMÉLIORÉS */
+        .form-group input, .form-group textarea { 
+            width: 100%; 
+            padding: 15px; 
+            border: 1px solid #cbd5e1; 
+            border-radius: 8px; 
+            font-size: 1rem; 
+            transition: 0.3s;
+            background: white;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 110, 182, 0.1);
+        }
+
+        /* BOUTON ENVOYER */
+        .btn-submit { 
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%); 
+            color: white; 
+            border: none; 
+            padding: 16px 30px; 
+            border-radius: 8px; 
+            font-weight: 700; 
+            font-size: 1.1rem;
+            cursor: pointer; 
+            width: 100%; 
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 110, 182, 0.3);
+            display: flex; justify-content: center; align-items: center; gap: 10px;
+        }
+        .btn-submit:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 8px 25px rgba(0, 110, 182, 0.4);
+        }
+        
+        .form-footer-text { text-align: center; font-size: 0.85rem; color: var(--gray); margin-top: 15px; }
 
         /* --- FOOTER --- */
         footer { background: var(--dark-blue); color: white; padding: 60px 5% 20px; font-size: 0.9rem; }
@@ -459,7 +488,7 @@
     <section id="realisations" class="portfolio">
         <div class="section-title">
             <h2>Mes <span>Réalisations</span></h2>
-            <p>Concrètement, qu'est-ce que l'automatisation change pour vous ?</p>
+            <p>Concrètement, qu'est-ce que l'automatisation change pour vous ? Voici des exemples réels.</p>
         </div>
 
         <div class="portfolio-grid">
@@ -520,7 +549,7 @@
                 </p>
                 
                 <div class="about-vision-box">
-                    <p>Notre vision : chaque entreprise réunionnaise puisse accéder à des solutions innovantes, simples et efficaces.</p>
+                    <p>Notre vision : que chaque entreprise réunionnaise puisse accéder à des solutions innovantes, simples et efficaces.</p>
                 </div>
                 
                 <div class="values-list">
@@ -529,22 +558,27 @@
                     <div class="value-item"><i class="fas fa-check"></i> Pédagogie</div>
                     <div class="value-item"><i class="fas fa-check"></i> Résultat (ROI)</div>
                 </div>
-    
+                
+                <div class="tags">
+                    <span class="tag tech">Microsoft Power Platform</span>
+                    <span class="tag tech">Python</span>
+                    <span class="tag sec">BTS SIO / Licence Info</span>
+                    <span class="tag sec">Cybersécurité</span>
+                </div>
             </div>
             
             <div class="about-image">
                 <i class="fas fa-user-tie" style="font-size: 5rem; color: #cbd5e1; margin-bottom: 20px;"></i>
                 <p><strong>[Ma Photo Ici]</strong></p>
+                <p style="font-size:0.9rem; color:var(--gray);">Fondateur RunFlow Solutions</p>
                 
-                <div class="certification-card">
-                    <div class="cert-icon">
-                        <i class="fab fa-microsoft"></i>
-                    </div>
-                    <div class="cert-details">
-                        <span class="cert-title">Microsoft Certified</span>
-                        <span class="cert-name">Power Platform Fundamentals</span>
-                        <div class="cert-status"><i class="fas fa-check-circle"></i> Certification Validée</div>
-                    </div>
+                <div class="certif-container">
+                    <span class="certif-title">Certification Officielle</span>
+                    
+                    <img src="certifi.png" alt="Badge Microsoft Certified Power Platform Fundamentals" class="certif-img">
+                    
+                    <div class="certif-name">Power Platform<br>Fundamentals</div>
+                    <div class="certif-check"><i class="fas fa-check-circle"></i> Validée & Vérifiée</div>
                 </div>
 
             </div>
@@ -616,17 +650,21 @@
                 <form action="https://formspree.io/f/xrbnkjqk" method="POST">
                     <div class="form-group">
                         <label>Votre Nom</label>
-                        <input type="text" placeholder="Ex: Mathieu MARTIGNY">
+                        <input type="text" name="name" placeholder="Ex: Mathieu MARTIGNY" required>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" placeholder="Ex: mathieu@entreprise.re">
+                        <input type="email" name="email" placeholder="Ex: mathieu@entreprise.re" required>
                     </div>
                     <div class="form-group">
                         <label>Message</label>
-                        <textarea rows="5" placeholder="Bonjour, j'aimerais automatiser la gestion de mes factures..."></textarea>
+                        <textarea name="message" rows="5" placeholder="Bonjour, j'aimerais automatiser la gestion de mes factures..." required></textarea>
                     </div>
-                    <button type="submit" class="btn-submit">Envoyer la demande</button>
+                    
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Envoyer ma demande
+                    </button>
+                    <p class="form-footer-text">Réponse sous 24h • Devis Gratuit & Sans Engagement</p>
                 </form>
             </div>
         </div>
@@ -646,11 +684,11 @@
 
             <div class="footer-col">
                 <h4>Légal</h4>
-    <ul>
-        <li><a href="mentions.html" target="_blank">Mentions Légales</a></li>
-        <li><a href="confidentialite.html" target="_blank">Politique de Confidentialité</a></li>
-        <li><a href="cgv.html" target="_blank">CGV</a></li>
-    </ul>
+                <ul>
+                    <li><a href="mentions.html" target="_blank">Mentions Légales</a></li>
+                    <li><a href="confidentialite.html" target="_blank">Politique de Confidentialité</a></li>
+                    <li><a href="cgv.html" target="_blank">CGV</a></li>
+                </ul>
             </div>
 
             <div class="footer-col">
@@ -666,11 +704,7 @@
         </div>
     </footer>
 
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
 </body>
-
 </html>
-
-
-
-
-
